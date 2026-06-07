@@ -1,0 +1,257 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .port { background: #0d1117; color: #e6edf3; min-height: 100vh; font-size: 15px; line-height: 1.7; border-radius: 12px; overflow: hidden; font-family: var(--font-sans); }
+  .nav { background: #0d1117cc; border-bottom: 0.5px solid #30363d; padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+  .nav-logo { font-size: 16px; font-weight: 500; color: #58a6ff; letter-spacing: 0.5px; }
+  .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .nav-links a { color: #8b949e; font-size: 13px; text-decoration: none; cursor: pointer; }
+  .nav-links a:hover { color: #e6edf3; }
+  .hero { padding: 72px 40px 56px; border-bottom: 0.5px solid #21262d; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: #1f3a5c; color: #58a6ff; font-size: 12px; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; border: 0.5px solid #2d5a8c; }
+  .hero h1 { font-size: 38px; font-weight: 500; color: #e6edf3; margin-bottom: 8px; }
+  .hero h1 span { color: #58a6ff; }
+  .hero-tagline { color: #8b949e; font-size: 16px; margin-bottom: 28px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: #238636; color: #fff; border: none; padding: 10px 22px; border-radius: 8px; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  .btn-secondary { background: transparent; color: #58a6ff; border: 0.5px solid #2d5a8c; padding: 10px 22px; border-radius: 8px; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+  section { padding: 48px 40px; border-bottom: 0.5px solid #21262d; }
+  .section-label { font-size: 11px; color: #58a6ff; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .section-title { font-size: 22px; font-weight: 500; color: #e6edf3; margin-bottom: 28px; }
+  .about-text { color: #8b949e; font-size: 15px; line-height: 1.8; max-width: 680px; }
+  .about-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 28px; }
+  .stat-card { background: #161b22; border: 0.5px solid #30363d; border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-num { font-size: 24px; font-weight: 500; color: #58a6ff; }
+  .stat-label { font-size: 12px; color: #8b949e; margin-top: 2px; }
+  .strengths { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .strength-tag { background: #1c2128; border: 0.5px solid #30363d; color: #8b949e; font-size: 13px; padding: 6px 14px; border-radius: 20px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .skill-cat { background: #161b22; border: 0.5px solid #30363d; border-radius: 10px; padding: 16px; }
+  .skill-cat-title { font-size: 13px; font-weight: 500; color: #58a6ff; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .skill-tag { display: inline-block; background: #1c2128; border: 0.5px solid #30363d; color: #8b949e; font-size: 12px; padding: 3px 10px; border-radius: 20px; margin: 3px 3px 3px 0; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .project-card { background: #161b22; border: 0.5px solid #30363d; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .project-card:hover { border-color: #2d5a8c; }
+  .project-title { font-size: 15px; font-weight: 500; color: #e6edf3; display: flex; align-items: center; gap: 8px; }
+  .project-desc { color: #8b949e; font-size: 13px; line-height: 1.6; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tag { background: #1f3a5c; color: #58a6ff; font-size: 11px; padding: 2px 8px; border-radius: 20px; }
+  .gh-link { color: #58a6ff; font-size: 12px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; }
+  .gh-link:hover { color: #79c0ff; }
+  .exp-list { display: flex; flex-direction: column; gap: 20px; }
+  .exp-item { background: #161b22; border: 0.5px solid #30363d; border-radius: 10px; padding: 20px; display: flex; gap: 16px; }
+  .exp-dot { width: 10px; height: 10px; background: #238636; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .exp-role { font-size: 15px; font-weight: 500; color: #e6edf3; }
+  .exp-company { font-size: 13px; color: #58a6ff; }
+  .exp-period { font-size: 12px; color: #8b949e; margin-top: 2px; }
+  .exp-bullets { margin-top: 10px; padding-left: 16px; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullets li { font-size: 13px; color: #8b949e; line-height: 1.6; padding-left: 12px; position: relative; }
+  .exp-bullets li::before { content: "›"; position: absolute; left: 0; color: #58a6ff; }
+  .edu-card { background: #161b22; border: 0.5px solid #30363d; border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 16px; max-width: 420px; }
+  .edu-icon { color: #58a6ff; font-size: 28px; flex-shrink: 0; }
+  .edu-degree { font-size: 15px; font-weight: 500; color: #e6edf3; }
+  .edu-school { font-size: 13px; color: #58a6ff; margin-top: 4px; }
+  .edu-year { font-size: 12px; color: #8b949e; margin-top: 2px; }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .cert-card { background: #161b22; border: 0.5px solid #30363d; border-radius: 10px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; }
+  .cert-icon { color: #e3b341; font-size: 24px; flex-shrink: 0; }
+  .cert-name { font-size: 14px; font-weight: 500; color: #e6edf3; }
+  .cert-by { font-size: 12px; color: #8b949e; margin-top: 2px; }
+  .cert-meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+  .cert-year { font-size: 11px; color: #3d6a3d; display: inline-block; background: #1a2e1a; padding: 2px 8px; border-radius: 20px; }
+  .cert-id { font-size: 11px; color: #8b949e; font-family: var(--font-mono); }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .contact-card { background: #161b22; border: 0.5px solid #30363d; border-radius: 10px; padding: 16px; display: flex; align-items: center; gap: 12px; }
+  .contact-icon { color: #58a6ff; font-size: 20px; flex-shrink: 0; }
+  .contact-label { font-size: 12px; color: #8b949e; }
+  .contact-val { font-size: 13px; color: #e6edf3; font-weight: 500; word-break: break-all; }
+  .contact-val a { color: #58a6ff; text-decoration: none; }
+  .contact-val a:hover { color: #79c0ff; }
+  .lang-row { display: flex; gap: 10px; margin-top: 4px; }
+  .lang-badge { background: #1f3a5c; color: #58a6ff; font-size: 12px; padding: 3px 12px; border-radius: 20px; border: 0.5px solid #2d5a8c; }
+  .footer { padding: 24px 40px; text-align: center; color: #8b949e; font-size: 13px; }
+</style>
+
+<div class="port">
+  <nav class="nav">
+    <span class="nav-logo">&lt;EG /&gt;</span>
+    <div class="nav-links">
+      <a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
+      <a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</a>
+      <a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a>
+      <a onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">Experience</a>
+      <a onclick="document.getElementById('education').scrollIntoView({behavior:'smooth'})">Education</a>
+      <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge"><i class="ti ti-terminal-2" aria-hidden="true"></i> Linux Admin → DevOps Engineer</div>
+    <h1>Hi, I'm <span>Evangeline Gifty</span></h1>
+    <p class="hero-tagline">DevOps Engineer | Cloud & Automation Enthusiast</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="mailto:evangelinegiftyy@gmail.com"><i class="ti ti-mail" aria-hidden="true"></i> Get in touch</a>
+      <a class="btn-secondary" href="https://github.com/Evangeline-Gifty" target="_blank"><i class="ti ti-brand-github" aria-hidden="true"></i> GitHub</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="section-label">01 — About me</div>
+    <div class="section-title">Who I am</div>
+    <p class="about-text">Linux Administrator with 3 years of production support experience at Wipro, actively transitioning into DevOps. Completed AWS DevOps training (GUVI, Feb 2026) with hands-on experience building CI/CD pipelines, containerised deployments, and monitoring stacks using Docker, Kubernetes, Terraform, Jenkins, Prometheus, and Grafana.</p>
+    <div class="about-stats">
+      <div class="stat-card"><div class="stat-num">3 yrs</div><div class="stat-label">Production Linux experience</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">DevOps projects built</div></div>
+      <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">Unplanned downtime incidents</div></div>
+      <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">SLA met</div></div>
+    </div>
+    <div style="margin-top: 28px;">
+      <div style="font-size: 13px; color: #58a6ff; margin-bottom: 10px; font-weight: 500;">Strengths</div>
+      <div class="strengths">
+        <span class="strength-tag">Quick Learner</span>
+        <span class="strength-tag">Problem Solving</span>
+        <span class="strength-tag">SLA Management</span>
+        <span class="strength-tag">Remote Operations</span>
+        <span class="strength-tag">Attention to Detail</span>
+        <span class="strength-tag">Team Collaboration</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">02 — Skills & tools</div>
+    <div class="section-title">What I work with</div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="ti ti-cloud" aria-hidden="true"></i> Cloud — AWS</div>
+        <span class="skill-tag">EC2</span><span class="skill-tag">IAM</span><span class="skill-tag">S3</span><span class="skill-tag">VPC</span><span class="skill-tag">ECR</span><span class="skill-tag">EKS</span><span class="skill-tag">CloudWatch</span><span class="skill-tag">CodePipeline</span><span class="skill-tag">CodeBuild</span>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="ti ti-box" aria-hidden="true"></i> DevOps tools</div>
+        <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Jenkins</span><span class="skill-tag">Terraform</span><span class="skill-tag">Ansible</span><span class="skill-tag">Git</span>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="ti ti-refresh" aria-hidden="true"></i> CI/CD</div>
+        <span class="skill-tag">Jenkins Pipelines</span><span class="skill-tag">CodePipeline</span><span class="skill-tag">GitHub Webhooks</span>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="ti ti-chart-bar" aria-hidden="true"></i> Monitoring</div>
+        <span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="ti ti-terminal" aria-hidden="true"></i> Linux & scripting</div>
+        <span class="skill-tag">SUSE Linux</span><span class="skill-tag">Shell Scripting</span><span class="skill-tag">Python</span><span class="skill-tag">Log Analysis</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">03 — Projects</div>
+    <div class="section-title">Things I've built</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-title"><i class="ti ti-refresh" style="color:#58a6ff" aria-hidden="true"></i> CI/CD Pipeline for React App on AWS EKS</div>
+        <p class="project-desc">Built an end-to-end CI/CD pipeline — containerised with Docker, images stored in AWS ECR, deployed to EKS using Kubernetes manifests. Automated the full build-to-deploy workflow using AWS CodePipeline and CodeBuild, achieving zero-downtime production releases.</p>
+        <div class="project-tags"><span class="tag">Docker</span><span class="tag">AWS ECR</span><span class="tag">EKS</span><span class="tag">CodePipeline</span><span class="tag">Kubernetes</span></div>
+        <a class="gh-link" href="https://github.com/Evangeline-Gifty" target="_blank"><i class="ti ti-brand-github" aria-hidden="true"></i> View on GitHub</a>
+      </div>
+      <div class="project-card">
+        <div class="project-title"><i class="ti ti-server" style="color:#58a6ff" aria-hidden="true"></i> Infrastructure Provisioning & CI/CD</div>
+        <p class="project-desc">Provisioned AWS infrastructure (EC2, VPC, IAM, S3) as code using Terraform. Built Jenkins pipelines to automate Docker image builds and push to AWS ECR, triggered via GitHub webhooks. Deployed containerised apps to Kubernetes clusters with a fully automated delivery pipeline.</p>
+        <div class="project-tags"><span class="tag">Terraform</span><span class="tag">Jenkins</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Kubernetes</span></div>
+        <a class="gh-link" href="https://github.com/Evangeline-Gifty" target="_blank"><i class="ti ti-brand-github" aria-hidden="true"></i> View on GitHub</a>
+      </div>
+      <div class="project-card">
+        <div class="project-title"><i class="ti ti-chart-line" style="color:#58a6ff" aria-hidden="true"></i> Monitoring & Observability Stack</div>
+        <p class="project-desc">Set up Prometheus to scrape metrics and configure alerting rules for CPU, memory, and service health. Built Grafana dashboards for real-time visibility. Integrated the full monitoring stack with Kubernetes for end-to-end observability across all containerised workloads.</p>
+        <div class="project-tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Kubernetes</span><span class="tag">Alerting</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">04 — Work experience</div>
+    <div class="section-title">Where I've worked</div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div style="flex:1">
+          <div class="exp-role">Support Engineer — Linux Administrator (Avamar)</div>
+          <div class="exp-company">Wipro Limited</div>
+          <div class="exp-period">Dec 2022 – Dec 2025 · 3 years</div>
+          <ul class="exp-bullets">
+            <li>Managed production Linux system operations for enterprise clients in high-availability environments, supporting multiple simultaneous upgrade sessions with zero unplanned downtime.</li>
+            <li>Monitored and analysed system performance metrics — CPU, memory, disk, and process health — across SUSE Linux environments to ensure production stability.</li>
+            <li>Diagnosed and resolved upgrade-related incidents by analysing system logs and service behaviour, consistently meeting SLA commitments across all customer accounts.</li>
+            <li>Executed NDMP, server, and OS upgrade operations via remote sessions, validating services and confirming system integrity post-upgrade.</li>
+            <li>Followed ITIL-aligned escalation workflows ensuring timely issue resolution and consistent service quality.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-label">05 — Education</div>
+    <div class="section-title">Academic background</div>
+    <div class="edu-card">
+      <i class="ti ti-school edu-icon" aria-hidden="true"></i>
+      <div>
+        <div class="edu-degree">B.Sc. Computer Science</div>
+        <div class="edu-school">Loyola College of Arts and Science</div>
+        <div class="edu-year">Graduated 2022</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="section-label">06 — Certifications</div>
+    <div class="section-title">Credentials</div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <i class="ti ti-certificate cert-icon" aria-hidden="true"></i>
+        <div>
+          <div class="cert-name">AWS DevOps</div>
+          <div class="cert-by">GUVI</div>
+          <div class="cert-meta">
+            <span class="cert-year">Feb 2026</span>
+            <span class="cert-id">ID: e936afg3egbv7mih</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">07 — Contact</div>
+    <div class="section-title">Get in touch</div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="ti ti-phone contact-icon" aria-hidden="true"></i>
+        <div><div class="contact-label">Phone</div><div class="contact-val">+91 98949 91646</div></div>
+      </div>
+      <div class="contact-card">
+        <i class="ti ti-mail contact-icon" aria-hidden="true"></i>
+        <div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:evangelinegiftyy@gmail.com">evangelinegiftyy@gmail.com</a></div></div>
+      </div>
+      <div class="contact-card">
+        <i class="ti ti-brand-linkedin contact-icon" aria-hidden="true"></i>
+        <div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://linkedin.com/in/evangelinegifty" target="_blank">linkedin.com/in/evangelinegifty</a></div></div>
+      </div>
+      <div class="contact-card">
+        <i class="ti ti-brand-github contact-icon" aria-hidden="true"></i>
+        <div><div class="contact-label">GitHub</div><div class="contact-val"><a href="https://github.com/Evangeline-Gifty" target="_blank">github.com/Evangeline-Gifty</a></div></div>
+      </div>
+      <div class="contact-card">
+        <i class="ti ti-map-pin contact-icon" aria-hidden="true"></i>
+        <div><div class="contact-label">Location</div><div class="contact-val">Salem, Tamil Nadu</div></div>
+      </div>
+      <div class="contact-card">
+        <i class="ti ti-language contact-icon" aria-hidden="true"></i>
+        <div><div class="contact-label">Languages</div><div class="lang-row"><span class="lang-badge">English</span><span class="lang-badge">Tamil</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Built with care · Evangeline Gifty · 2026</div>
+</div>

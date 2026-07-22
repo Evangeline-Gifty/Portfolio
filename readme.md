@@ -106,13 +106,21 @@ http://localhost:3500
 
 ## 📸 Screenshots
 
-Add screenshots here:
-
 - Jenkins Successful Build
+
+![alt text](image.png)
+
 - Jenkins Console Output
-- Docker Image
-- Running Container (`docker ps`)
+
+![alt text](image-1.png)
+
+- Docker Image & Running Container (`docker ps`)
+
+![alt text](image-2.png)
+
 - Portfolio Website
+
+![alt text](image-3.png)
 
 ---
 
